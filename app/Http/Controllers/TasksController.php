@@ -46,10 +46,11 @@ class TasksController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  Project $project
      * @param  Task $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(Project $project, Task $task)
     {
         return view('tasks.show', compact('project', 'task'));
     }
