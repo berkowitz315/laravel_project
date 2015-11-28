@@ -16,6 +16,12 @@ use App\Project;
 
 class ProjectsController extends Controller
 {
+
+    protected $rules = [        
+            'name' => ['required', 'min:3'],
+            'slug' => ['required'],
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -45,6 +51,8 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, $this->rules);
+        
         $input = Input::all();
         Project::create( $input );
  
