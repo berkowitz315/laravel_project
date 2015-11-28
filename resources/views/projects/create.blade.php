@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('master')
  
 @section('content')
     <h2>Create Project</h2>

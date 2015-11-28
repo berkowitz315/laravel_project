@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('master')
 
 @if(Session::has('flash_message'))
     <div class="alert alert-success">
