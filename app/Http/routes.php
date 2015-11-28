@@ -11,11 +11,20 @@
 |
 */
 
+
+//////////////////////////////////////////////////////
+// navi says that:-
+// NOTE: specify routes in following sequence
+// It fixed some on issues
+// esp.
+// Class Project not found by controller.php
+//////////////////////////////////////////////////////
+
 Route::get('/', 'ProjectsController@index'); 
- 
-Route::resource('projects',       'ProjectsController');
-//Route::resource('tasks',          'TasksController');
-Route::resource('projects.tasks', 'TasksController');
+
+// Provide controller methods with object instead of ID
+Route::model('tasks', 'Task');
+Route::model('projects', 'Project'); 
 
 // Setting Slug-based URLs
 Route::bind('tasks', function($value, $route) {
@@ -25,6 +34,7 @@ Route::bind('projects', function($value, $route) {
 	return App\Project::whereSlug($value)->first();
 });
 
-// Provide controller methods with object instead of ID
-Route::model('tasks', 'Task');
-Route::model('projects', 'Project'); 
+Route::resource('projects',       'ProjectsController');
+Route::resource('projects.tasks', 'TasksController');
+
+
