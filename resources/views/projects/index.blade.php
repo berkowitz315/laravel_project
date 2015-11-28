@@ -1,7 +1,7 @@
 @extends('welcome')
  
 @section('content')
-    <h2>Projects</h2>
+    <h2>Projects, count: {{ $projects->count() }} </h2>
  
     @if ( !$projects->count() )
         You have no projects
