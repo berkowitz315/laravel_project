@@ -95,7 +95,10 @@ class ProjectsController extends Controller
     {
         $input = array_except(Input::all(), '_method');
         $project->update($input);
-        return Redirect::route('projects.show', $project->slug)->with('message', 'Project updated.');
+
+        Session::flash('flash_message', 'Project updated successfully!');
+ 
+        return Redirect::route('projects.index')->with('message', 'Project created');
     }
 
     /**
