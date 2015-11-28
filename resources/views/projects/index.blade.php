@@ -15,7 +15,9 @@
         <table border="1" width="100%">
             @foreach( $projects as $project )
                 <tr>
-                    {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('projects.destroy', $project->slug))) !!}
+                    {!! Form::open(array('class' => 'form-inline', 
+                    'method' => 'DELETE', 
+                    'route' => array('projects.destroy', $project->slug))) !!}
                         <td><a href="{{ route('projects.show', $project->slug) }}">{{ $project->name }}</a></td>
                         
                         <td>{!! link_to_route('projects.edit', 'Edit', array($project->slug), array('class' => 'btn btn-info')) !!}</td>
