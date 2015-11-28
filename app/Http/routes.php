@@ -13,8 +13,9 @@
 
 Route::get('/', 'ProjectsController@index'); 
  
-Route::resource('projects', 'ProjectsController');
-Route::resource('tasks',    'TasksController');
+Route::resource('projects',       'ProjectsController');
+//Route::resource('tasks',          'TasksController');
+Route::resource('projects.tasks', 'TasksController');
 
 // Setting Slug-based URLs
 Route::bind('tasks', function($value, $route) {
