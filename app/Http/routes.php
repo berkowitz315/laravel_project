@@ -23,3 +23,7 @@ Route::bind('tasks', function($value, $route) {
 Route::bind('projects', function($value, $route) {
 	return App\Project::whereSlug($value)->first();
 });
+
+// Provide controller methods with object instead of ID
+Route::model('tasks', 'Task');
+Route::model('projects', 'Project'); 
