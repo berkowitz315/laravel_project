@@ -5,10 +5,27 @@
      @if ( !$project->tasks->count() )
         Your project has no tasks.
     @else
-        <ul>
+        <table border="1" width="100%">
             @foreach( $project->tasks as $task )
-                <li><a href="{{ route('projects.tasks.show', [$project->slug, $task->slug]) }}">{{ $task->name }}</a></li>
+                <tr>
+                    {!! Form::open(
+                        array('class' => 'form-inline',
+                         'method' => 'DELETE', 
+                         'route' => array('projects.tasks.destroy', 
+                         $project->slug, $task->slug))) !!}
+                        <td><a href="{{ route('projects.tasks.show', [$project->slug, $task->slug]) }}">{{ $task->name }}</a></td>
+                        
+                        <td>{!! link_to_route('projects.tasks.edit', 'Edit', array($project->slug, $task->slug), array('class' => 'btn btn-info')) !!}</td>
+ 
+                        <td>{!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}</td>
+                        
+                    {!! Form::close() !!}
+                </tr>
             @endforeach
-        </ul>
+        </table>
     @endif
+    <p>
+        {!! link_to_route('projects.index', 'Back to Projects') !!} |
+        {!! link_to_route('projects.tasks.create', 'Create Task', $project->slug) !!}
+    </p>
 @endsection

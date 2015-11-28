@@ -10,8 +10,20 @@ use App\Http\Controllers\Controller;
 use App\Project;
 use App\Task;
 
+use Input;
+use Redirect;
+use Log;
+use Session;
+
 class TasksController extends Controller
 {
+
+    protected $rules = [
+            'name' => ['required', 'min:3'],
+            'slug' => ['required'],
+            'description' => ['required'],
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +39,7 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Project $project)
     {
         return view('tasks.create', compact('project'));
     }
@@ -38,9 +50,14 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Project $project, Request $request)
     {
-        //
+        $this->validate($request, $this->rules); 
+        $input = Input::all();
+        $input['project_id'] = $project->id;
+        Task::create( $input );
+ 
+        return Redirect::route('projects.show', $project->slug)->with('Task created.');
     }
 
     /**
@@ -58,10 +75,11 @@ class TasksController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  Project $project
      * @param  Task $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit(Project $project, Task $task)
     {
         return view('tasks.edit', compact('project', 'task'));
     }
@@ -73,9 +91,13 @@ class TasksController extends Controller
      * @param  Task $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Project $project, Task $task, Request  $request)
     {
-        //
+        $this->validate($request, $this->rules); 
+        $input = array_except(Input::all(), '_method');
+        $task->update($input);
+ 
+        return Redirect::route('projects.tasks.show', [$project->slug, $task->slug])->with('message', 'Task updated.');
     }
 
     /**
@@ -84,8 +106,10 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(Project $project, Task $task, Request  $request)
     {
-        //
+
+        $task->delete();
+        return Redirect::route('projects.show', [$project->slug])->with('message', 'Task deleted.');
     }
 }

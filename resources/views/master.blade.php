@@ -20,6 +20,13 @@
         </nav>
         <div class="container">
             <div class="content">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
                 @section('content')
                 This is the master sidebar.
                 @show
