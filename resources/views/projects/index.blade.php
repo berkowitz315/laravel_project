@@ -12,17 +12,17 @@
     @if ( !$projects->count() )
         You have no projects
     @else
-        <ul>
+        <table border="1" width="100%">
             @foreach( $projects as $project )
-                <li>
+                <tr>
                     {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('projects.destroy', $project->slug))) !!}
-                        <a href="{{ route('projects.show', $project->slug) }}">{{ $project->name }}</a>
-                        (
-                            {!! link_to_route('projects.edit', 'Edit', array($project->slug), array('class' => 'btn btn-info')) !!},
-                            {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
-                        )
+                        <td><a href="{{ route('projects.show', $project->slug) }}">{{ $project->name }}</a></td>
+                        
+                        <td>{!! link_to_route('projects.edit', 'Edit', array($project->slug), array('class' => 'btn btn-info')) !!}</td>
+                        <td>{!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}</td>
+                        
                     {!! Form::close() !!}
-                </li>
+                </tr>
             @endforeach
         </ul>
     @endif

@@ -13,13 +13,13 @@
                 </div>
                 <div class="nav navbar-nav navbar-right">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="{{ route('projects.index') }}">Projects</a></li>
+                    <li><a href="{{ route('projects.create') }}">Add Project</a></li>
                 </div>
             </div>
         </nav>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5 - Project Management System</div>
                 @section('content')
                 This is the master sidebar.
                 @show
