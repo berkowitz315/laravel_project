@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Input;
+use Redirect;
+use Log;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -41,7 +45,10 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = Input::all();
+        Project::create( $input );
+ 
+        return Redirect::route('projects.index')->with('message', 'Project created');
     }
 
     /**
@@ -63,7 +70,7 @@ class ProjectsController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('projects.edit', compact('project'));
     }
 
     /**
@@ -75,7 +82,9 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $input = array_except(Input::all(), '_method');
+        $project->update($input);
+        return Redirect::route('projects.show', $project->slug)->with('message', 'Project updated.');
     }
 
     /**
@@ -86,6 +95,7 @@ class ProjectsController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return Redirect::route('projects.index')->with('message', 'Project deleted.');
     }
 }

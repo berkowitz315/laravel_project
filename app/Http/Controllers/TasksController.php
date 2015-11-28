@@ -19,7 +19,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
+        return view('tasks.index', compact('project'));
     }
 
     /**
@@ -29,7 +29,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create', compact('project'));
     }
 
     /**
@@ -51,7 +51,7 @@ class TasksController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return view('tasks.show', compact('project', 'task'));
     }
 
     /**
@@ -62,7 +62,7 @@ class TasksController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('tasks.edit', compact('project', 'task'));
     }
 
     /**
