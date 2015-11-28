@@ -31,14 +31,17 @@
             }
 
             .title {
-                font-size: 96px;
+                font-size: 16px;
             }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Laravel 5 - Project Management System</div>
+                @section('content')
+                This is the master sidebar.
+                @show
             </div>
         </div>
     </body>
