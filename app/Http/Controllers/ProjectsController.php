@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Input;
 use Redirect;
 use Log;
+use Session;
 
 use Illuminate\Http\Request;
 
@@ -52,9 +53,11 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, $this->rules);
-        
+
         $input = Input::all();
         Project::create( $input );
+
+        Session::flash('flash_message', 'Task successfully added!');
  
         return Redirect::route('projects.index')->with('message', 'Project created');
     }
