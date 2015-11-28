@@ -9,7 +9,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Laravel Project</a>
+                    {!! link_to_route('projects.index', 'Laravel Project', array(), array('class' => 'navbar-brand')) !!}
                 </div>
                 <div class="nav navbar-nav navbar-right">
                     <li><a href="/">Home</a></li>
