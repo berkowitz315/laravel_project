@@ -6,7 +6,8 @@
     @if ( !$projects->count() )
         You have no projects
     @else
-        <table border="1" width="100%">
+        <table class="table" border="0" width="100%">
+            <tr class="info"><td>Project</td><td>Edit</td><td>Delete</td></tr>
             @foreach( $projects as $project )
                 <tr>
                     {!! Form::open(array(
@@ -39,7 +40,7 @@
     @endif
  
     <p>
-        {!! link_to_route('projects.create', 'Create Project') !!}
+        {!! link_to_route('projects.create', 'Create Project', '', array('class' => 'btn btn-info')) !!}
     </p>
 @endsection
  
