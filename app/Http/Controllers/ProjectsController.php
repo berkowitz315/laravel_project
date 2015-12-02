@@ -110,6 +110,9 @@ class ProjectsController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
+
+        Session::flash('flash_message', 'Project deleted successfully!');
+
         return Redirect::route('projects.index')->with('message', 'Project deleted.');
     }
 }

@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Laravel</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-       
+ <head>
+        <title>Laravel Project</title>
+        <script type="text/javascript" src="{{ URL::asset('js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('bootstrap-3.3.6-dist/js/bootstrap.js') }}"></script>
+        <link rel="stylesheet" href="{{ URL::asset('bootstrap-3.3.6-dist/css/bootstrap.css') }}">
+        <script>
+        function pageLoaded() {
+            @if(Session::has('flash_message'))
+                var notify = $('#notificationModal');
+                notify.find('.modal-body p').text("{{ Session::get('flash_message') }}");
+                notify.modal('show');                  
+            @endif           
+        }
+
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -32,5 +43,7 @@
                 @show
             </div>
         </div>
+        @include('popups.deleteconfirm')
+        @include('popups.notification')
     </body>
 </html>
