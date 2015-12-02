@@ -5,9 +5,13 @@
      @if ( !$project->tasks->count() )
         Your project has no tasks.
     @else
-        <table border="1" width="100%">
+        <table class="table" border="0" width="100%">
+            <tr class="info"><td>#</td><td>Task</td><td>Edit</td><td>Delete</td>
+            </tr>
+            <?php $i=0; ?>
             @foreach( $project->tasks as $task )
                 <tr>
+                    <td><?php $i++; echo $i; ?></td>
                     {!! Form::open(
                         array('class' => 'form-inline',
                          'method' => 'DELETE', 
