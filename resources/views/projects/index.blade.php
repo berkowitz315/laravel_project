@@ -1,8 +1,12 @@
 @extends('master')
  
 @section('content')
-    <h2>Projects, count: {{ $projects->count() }} </h2>
- 
+    <table width="100%">
+        <tr><td>{!! link_to_route('projects.create', 'Create Project', '', array('class' => 'btn btn-info')) !!}</td>
+            <td align="right">Total: {{ $projects->count() }}</td>
+        </tr>
+    <table>
+        <br>
     @if ( !$projects->count() )
         You have no projects
     @else
@@ -40,10 +44,6 @@
             @endforeach
         </ul>
     @endif
- 
-    <p>
-        {!! link_to_route('projects.create', 'Create Project', '', array('class' => 'btn btn-info')) !!}
-    </p>
 @endsection
  
 
